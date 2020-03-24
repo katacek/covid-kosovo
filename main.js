@@ -84,7 +84,7 @@ Apify.main(async () =>
             'apify/send-mail',
             {
                 to: email,
-                subject: `Covid-19 UK from ${env.startedAt} failed `,
+                subject: `Covid-19 Kosovo from ${env.startedAt} failed `,
                 html: `Hi, ${'<br/>'}
                         <a href="https://my.apify.com/actors/${env.actorId}#/runs/${env.actorRunId}">this</a> 
                         run had 0 identifiedCases, check it out.`,
