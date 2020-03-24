@@ -1,15 +1,10 @@
-# My beautiful actor
+# Coronavirus stats in the Kosovo 
 
-The `README.md` file contains a documentation what your actor does and how to use it,
-which is then displayed in the app or Apify Store. It's always a good
-idea to write a good `README.md`, in a few months not even you
-will remember all the details about the actor.
+Actor gets an actual number of coronavirus identified cases, recovered and deceased people in the Kosovo from https://kosova.health/en/ .
 
-You can use [Markdown](https://www.markdownguide.org/cheat-sheet)
-language for rich formatting.
+Latest data are available at this URL: https://api.apify.com/v2/key-value-stores/C10heVVVE8yBd1YvF/records/LATEST?disableRedirect=true.
 
-## Documentation reference
+You can find a dataset with unique history items here https://api.apify.com/v2/datasets/ruoBcTzhMpN6SaeS2/items?format=json&clean=1.
 
-- [Apify SDK](https://sdk.apify.com/)
-- [Apify Actor documentation](https://docs.apify.com/actor)
-- [Apify CLI](https://docs.apify.com/cli)
+URL is being actualized every 5 minutes.
+
