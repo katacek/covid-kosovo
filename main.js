@@ -42,7 +42,7 @@ Apify.main(async () =>
             deceased: deceased,
             sourceUrl:'https://kosova.health/en/',
             lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
-            //readMe: 'https://github.com/katacek/covid-uk/blob/master/README.md',
+            readMe: 'https://github.com/katacek/covid-kosovo/blob/master/README.md',
             };
         return data;
         
@@ -60,6 +60,7 @@ Apify.main(async () =>
         await kvStore.setValue('LATEST', result);
         latest = result;
     }
+    
     delete latest.lastUpdatedAtApify;
     const actual = Object.assign({}, result);
     delete actual.lastUpdatedAtApify;
