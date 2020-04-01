@@ -45,6 +45,7 @@ Apify.main(async () =>
             historyData: "https://api.apify.com/v2/datasets/ruoBcTzhMpN6SaeS2/items?format=json&clean=1",
             sourceUrl:'https://kosova.health/en/',
             lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
+            lastUpdatedAtSource: "N/A",
             readMe: 'https://apify.com/katerinahronik/covid-kosovo',
             };
         return data;
