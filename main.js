@@ -37,12 +37,15 @@ Apify.main(async () =>
 
 
         const data = {
-            identifiedCases: identifiedCases,
+            infected: identifiedCases,
+            tested: "N/A",
             recovered: recovered,
             deceased: deceased,
+            country: "Kosovo",
+            historyData: "https://api.apify.com/v2/datasets/ruoBcTzhMpN6SaeS2/items?format=json&clean=1",
             sourceUrl:'https://kosova.health/en/',
             lastUpdatedAtApify: new Date(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes())).toISOString(),
-            readMe: 'https://github.com/katacek/covid-kosovo/blob/master/README.md',
+            readMe: 'https://apify.com/katerinahronik/covid-kosovo',
             };
         return data;
         
