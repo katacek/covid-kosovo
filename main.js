@@ -11,6 +11,8 @@ Apify.main(async () =>
     const dataset = await Apify.openDataset('COVID-19-KOSOVO-HISTORY');
     const { email } = await Apify.getValue('INPUT');
 
+    try{
+
     console.log('Launching Puppeteer...');
     const browser = await Apify.launchPuppeteer();
 
@@ -55,9 +57,8 @@ Apify.main(async () =>
     console.log(result)
     
     if ( !result.infected ) {
-                check = true;
-            }
-        
+        throw "One of the output is null";
+    }        
     
     let latest = await kvStore.getValue(LATEST);
     if (!latest) {
@@ -82,18 +83,33 @@ Apify.main(async () =>
     console.log('Done.');  
     
     //if there are no data for TotalInfected, send email, because that means something is wrong
-    const env = await Apify.getEnv();
-    if (check) {
-        await Apify.call(
-            'apify/send-mail',
-            {
-                to: email,
-                subject: `Covid-19 Kosovo from ${env.startedAt} failed `,
-                html: `Hi, ${'<br/>'}
-                        <a href="https://my.apify.com/actors/${env.actorId}#/runs/${env.actorRunId}">this</a> 
-                        run had 0 identifiedCases, check it out.`,
-            },
-            { waitSecs: 0 },
-        );
-    };
+    // const env = await Apify.getEnv();
+    // if (check) {
+    //     await Apify.call(
+    //         'apify/send-mail',
+    //         {
+    //             to: email,
+    //             subject: `Covid-19 Kosovo from ${env.startedAt} failed `,
+    //             html: `Hi, ${'<br/>'}
+    //                     <a href="https://my.apify.com/actors/${env.actorId}#/runs/${env.actorRunId}">this</a> 
+    //                     run had 0 identifiedCases, check it out.`,
+    //         },
+    //         { waitSecs: 0 },
+    //     );
+    // };
+}
+catch(err){
+
+    console.log(err)
+
+    let latest = await kvStore.getValue(LATEST);
+    var latestKvs = latest.lastUpdatedAtApify;
+    var latestKvsDate = new Date(latestKvs)
+    var d = new Date();
+    // adding two hours to d
+    d.setHours(d.getHours() - 2);
+    if (latestKvsDate < d) {
+        throw (err)
+    }
+}
 });
